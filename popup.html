@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body { font-family: system-ui, Arial, sans-serif; width: 320px; padding: 12px; }
+        h4 { margin: 0 0 12px; }
+        .row { margin-bottom: 8px; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 8px; }
+        button { width: 100%; padding: 10px; }
+        small { color: #666; }
+    </style>
+</head>
+<body>
+<h4>Bug reporter</h4>
+<div class="row">
+    <label><input id="upload" type="checkbox"> Upload automatically</label>
+</div>
+<div class="row">
+    <input id="endpoint" type="text" placeholder="https://intra.mybusiness/api/reports">
+</div>
+<div class="row">
+    <input id="token" type="password" placeholder="Bearer token (optional)">
+    <small>Use SSO/short JWT. If empty, download locally.</small>
+</div>
+<button id="report">Generate report</button>
+<div id="status" class="row"><small>Ready.</small></div>
+<script src="popup.js"></script>
+</body>
+</html>

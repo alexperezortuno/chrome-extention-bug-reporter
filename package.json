@@ -3,7 +3,7 @@
     "clean": "rm -rf dist",
     "build": "npm run clean && rollup -c rollup.config.mjs",
     "dev": "rollup -c rollup.config.mjs -w",
-    "pack": "npm run build && cd dist && zip -r ../bug-reporter.zip ."
+    "pack": "npm run build && cd dist && zip -r ../bug-reporter_1.0.1.zip ."
   },
   "dependencies": {
     "jszip": "3.10.1"

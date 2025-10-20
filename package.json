@@ -1,9 +1,15 @@
 {
+  "name": "bug-reporter",
+  "version": "1.0.1",
+  "description": "A Chrome extension to report bugs",
+  "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run clean && rollup -c rollup.config.mjs",
     "dev": "rollup -c rollup.config.mjs -w",
-    "pack": "npm run build && cd dist && zip -r ../bug-reporter_1.0.1.zip ."
+    "pack": "npm run build && cd dist && zip -r ../bug-reporter_1.0.1.zip .",
+    "pack:chrome": "node scripts/pack-chrome.js",
+    "release": "npm run clean && npm run build && npm run pack:chrome"
   },
   "dependencies": {
     "jszip": "3.10.1"
@@ -11,8 +17,10 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "28.0.6",
     "@rollup/plugin-node-resolve": "16.0.2",
+    "@types/chrome": "0.1.24",
+    "cross-env": "^7.0.3",
     "rollup": "4.52.4",
     "rollup-plugin-copy": "3.5.0",
-    "@types/chrome": "0.1.24"
+    "shelljs": "^0.10.0"
   }
 }

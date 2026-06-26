@@ -80,12 +80,18 @@ npm run dev
 npm run build
 ```
 
-### Cargar en Chrome
-1. `npm run build` → genera `dist/`
-2. abrir `chrome://extensions`
-3. activar `Developer mode`
-4. `Load unpacked` → elegir carpeta `dist`
-5. probar popup + subir reporte hacia backend local
+### Load in Chrome
+1. Run `npm run build` to produce `dist/`.
+2. Open `chrome://extensions`.
+3. Enable `Developer mode`.
+4. Click `Load unpacked` and select the `dist` folder.
+5. Open the popup and try uploading against the local backend.
+
+### Package for Chrome Web Store
+- `npm run pack` creates `bug-reporter_<version>.zip`.
+- `npm run pack:chrome` calls `google-chrome --pack-extension` to generate `dist.crx` and `dist.pem`.
+  - Store `dist.pem` securely; reuse the same key for future releases.
+- `npm run release` runs clean → build → pack:chrome.
 
 Disclaimer:
 This extension is designed for debugging and quality assurance purposes only.

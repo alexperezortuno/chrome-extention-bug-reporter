@@ -21,6 +21,6 @@
     "cross-env": "^7.0.3",
     "rollup": "4.52.4",
     "rollup-plugin-copy": "3.5.0",
-    "shelljs": "^0.10.0"
+    "shelljs": "^0.10.0",
   }
 }

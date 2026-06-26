@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const manifest = chrome.runtime.getManifest?.();
+    if (manifest?.version) {
+        const versionEl = document.getElementById('version');
+        if (versionEl) versionEl.textContent = `v${manifest.version}`;
+    }
+
     chrome.storage.local.get(['endpoint', 'token', 'upload'], (data = {}) => {
         if (typeof data.endpoint === 'string') {
             document.getElementById('endpoint').value = data.endpoint;

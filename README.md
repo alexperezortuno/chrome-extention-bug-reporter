@@ -37,6 +37,56 @@ All collected information is visible to you before it leaves your computer, ensu
 • Compatible with any HTTPS or HTTP site.
 • Works on Windows, macOS, Linux, and ChromeOS.
 
+## Backend Setup (optional upload API)
+
+### Dependencies
+- Python 3.11+
+- `pip install -r backend/requirements.txt`
+
+### Option A: miniconda
+```bash
+conda create -n bug-reporter python=3.11
+conda activate bug-reporter
+pip install -r backend/requirements.txt
+```
+
+### Option B: venv
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r backend/requirements.txt
+```
+
+### Run server
+```bash
+cd backend
+uvicorn app.main:app --reload --port 8000
+```
+
+## Extension Build & Local Test
+
+### Install deps
+```bash
+npm install
+```
+
+### Dev build (watch)
+```bash
+npm run dev
+```
+
+### Production bundle
+```bash
+npm run build
+```
+
+### Cargar en Chrome
+1. `npm run build` → genera `dist/`
+2. abrir `chrome://extensions`
+3. activar `Developer mode`
+4. `Load unpacked` → elegir carpeta `dist`
+5. probar popup + subir reporte hacia backend local
+
 Disclaimer:
 This extension is designed for debugging and quality assurance purposes only.
 Users are responsible for handling and transmitting collected data according to their organization’s privacy and security policies.

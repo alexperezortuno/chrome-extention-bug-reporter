@@ -1,9 +1,32 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const manifest = chrome.runtime.getManifest?.();
+    if (manifest?.version) {
+        const versionEl = document.getElementById('version');
+        if (versionEl) versionEl.textContent = `v${manifest.version}`;
+    }
+
+    chrome.storage.local.get(['endpoint', 'token', 'upload'], (data = {}) => {
+        if (typeof data.endpoint === 'string') {
+            document.getElementById('endpoint').value = data.endpoint;
+        }
+        if (typeof data.token === 'string') {
+            document.getElementById('token').value = data.token;
+        }
+        if (typeof data.upload === 'boolean') {
+            document.getElementById('upload').checked = data.upload;
+        }
+    });
+});
+
 document.getElementById('report').addEventListener('click', async () => {
     const upload = document.getElementById('upload').checked;
     const endpoint = document.getElementById('endpoint').value.trim();
+    const token = document.getElementById('token').value.trim();
+
+    chrome.storage.local.set({ endpoint, token, upload });
+
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    await chrome.runtime.sendMessage({action: "generate_report", options: {upload, endpoint}}, (resp) => {
-        // handled via messages from service worker (report_done/report_error)
+    await chrome.runtime.sendMessage({ action: "generate_report", options: { upload, endpoint, token } }, (resp) => {
         console.log(resp);
     });
     document.getElementById('status').innerText = 'Generating report...';

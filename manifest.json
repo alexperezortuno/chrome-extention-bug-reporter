@@ -2,14 +2,15 @@
   "manifest_version": 3,
   "name": "Data collector and crash reporting",
   "description": "Collect screenshot, cookies, storage and network for internal reports.",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "permissions": [
     "scripting",
     "activeTab",
     "tabs",
     "downloads",
     "cookies",
-    "debugger"
+    "debugger",
+    "storage"
   ],
   "host_permissions": [
     "https://*/**",

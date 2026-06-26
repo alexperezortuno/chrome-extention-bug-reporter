@@ -37,6 +37,62 @@ All collected information is visible to you before it leaves your computer, ensu
 • Compatible with any HTTPS or HTTP site.
 • Works on Windows, macOS, Linux, and ChromeOS.
 
+## Backend Setup (optional upload API)
+
+### Dependencies
+- Python 3.11+
+- `pip install -r backend/requirements.txt`
+
+### Option A: miniconda
+```bash
+conda create -n bug-reporter python=3.11
+conda activate bug-reporter
+pip install -r backend/requirements.txt
+```
+
+### Option B: venv
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r backend/requirements.txt
+```
+
+### Run server
+```bash
+cd backend
+uvicorn app.main:app --reload --port 8000
+```
+
+## Extension Build & Local Test
+
+### Install deps
+```bash
+npm install
+```
+
+### Dev build (watch)
+```bash
+npm run dev
+```
+
+### Production bundle
+```bash
+npm run build
+```
+
+### Load in Chrome
+1. Run `npm run build` to produce `dist/`.
+2. Open `chrome://extensions`.
+3. Enable `Developer mode`.
+4. Click `Load unpacked` and select the `dist` folder.
+5. Open the popup and try uploading against the local backend.
+
+### Package for Chrome Web Store
+- `npm run pack` creates `bug-reporter_<version>.zip`.
+- `npm run pack:chrome` calls `google-chrome --pack-extension` to generate `dist.crx` and `dist.pem`.
+  - Store `dist.pem` securely; reuse the same key for future releases.
+- `npm run release` runs clean → build → pack:chrome.
+
 Disclaimer:
 This extension is designed for debugging and quality assurance purposes only.
 Users are responsible for handling and transmitting collected data according to their organization’s privacy and security policies.

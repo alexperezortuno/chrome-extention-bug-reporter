@@ -13,3 +13,6 @@ dist
 *.zip
 *.crx
 *.pem
+AGENTS.md
+.agents
+skills-lock.json
